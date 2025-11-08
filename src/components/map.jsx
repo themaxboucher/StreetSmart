@@ -1,10 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   Marker,
   InfoWindow,
+  Polyline,
 } from "@react-google-maps/api";
+import { Bike, LoaderCircle } from "lucide-react";
+import { fetchBikePaths } from "@/services/osmApi";
+import { Button } from "./ui/button";
 
 const containerStyle = {
   width: "100%",
@@ -24,6 +28,10 @@ export function Map() {
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [showBikeLayers, setShowBikeLayers] = useState(false);
+  const [bikePaths, setBikePaths] = useState([]);
+  const [isLoadingPaths, setIsLoadingPaths] = useState(false);
+  const boundsTimeoutRef = useRef(null);
   const [markers, setMarkers] = useState([
     {
       id: 1,
@@ -40,6 +48,49 @@ export function Map() {
 
   const onUnmount = useCallback(() => {
     setMap(null);
+  }, []);
+
+  useEffect(() => {
+    if (!map || !showBikeLayers) return;
+
+    // Fetch bike paths when toggled on
+    const loadPaths = async () => {
+      setIsLoadingPaths(true);
+      const bounds = map.getBounds();
+      const paths = await fetchBikePaths(bounds);
+      setBikePaths(paths);
+      setIsLoadingPaths(false);
+    };
+
+    loadPaths();
+  }, [map, showBikeLayers]);
+
+  // Handle map bounds change to refresh bike paths with debounce
+  const handleBoundsChanged = useCallback(() => {
+    if (!map || !showBikeLayers) return;
+
+    // Clear previous timeout to debounce rapid calls
+    if (boundsTimeoutRef.current) {
+      clearTimeout(boundsTimeoutRef.current);
+    }
+
+    // Wait 500ms after bounds change before making API call
+    boundsTimeoutRef.current = setTimeout(async () => {
+      setIsLoadingPaths(true);
+      const bounds = map.getBounds();
+      const paths = await fetchBikePaths(bounds);
+      setBikePaths(paths);
+      setIsLoadingPaths(false);
+    }, 500);
+  }, [map, showBikeLayers]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (boundsTimeoutRef.current) {
+        clearTimeout(boundsTimeoutRef.current);
+      }
+    };
   }, []);
 
   const handleMapClick = (e) => {
@@ -62,7 +113,34 @@ export function Map() {
   }
 
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden relative">
+      {/* Bike Layer Toggle */}
+      <div className="absolute top-4 left-4 z-10 bg-white rounded-lg shadow-lg p-3">
+        <Button
+          onClick={() => {
+            setShowBikeLayers(!showBikeLayers);
+            if (showBikeLayers) setBikePaths([]);
+          }}
+          className={`${
+            showBikeLayers
+              ? "bg-blue-500 text-white hover:bg-blue-600"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          } ${isLoadingPaths & "animate-pulse"}`}
+          disabled={isLoadingPaths}
+        >
+          <Bike size={18} />
+          {isLoadingPaths ? (
+            <>
+              Bike Paths: ON <LoaderCircle className="size-4 animate-spin" />
+            </>
+          ) : showBikeLayers ? (
+            `Bike Paths: ON (${bikePaths.length})`
+          ) : (
+            "Bike Paths: OFF"
+          )}
+        </Button>
+      </div>
+
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={defaultCenter}
@@ -70,6 +148,7 @@ export function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={handleMapClick}
+        onBoundsChanged={handleBoundsChanged}
         options={{
           mapTypeControl: false,
           fullscreenControl: false,
@@ -83,6 +162,21 @@ export function Map() {
           ],
         }}
       >
+        {/* Render bike paths as polylines */}
+        {showBikeLayers &&
+          bikePaths.map((path) => (
+            <Polyline
+              key={path.id}
+              path={path.coordinates}
+              options={{
+                strokeColor: "#0EA5E9",
+                strokeOpacity: 0.8,
+                strokeWeight: 3,
+                geodesic: true,
+              }}
+            />
+          ))}
+
         {markers.map((marker) => (
           <Marker
             key={marker.id}
