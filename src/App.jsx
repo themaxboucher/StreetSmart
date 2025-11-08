@@ -1,15 +1,14 @@
-import { Button } from "@/components/ui/button";
 import { Header } from "./components/header";
+import { Map } from "./components/map";
 
 function App() {
   return (
     <>
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background">
-        <h1 className="text-4xl font-bold text-foreground">
-          Welcome to StreetSmart
-        </h1>
-        <Button>Click me</Button>
+      <main className="flex min-h-screen flex-col items-start justify-start bg-background">
+        <div className="w-full h-full">
+          <Map />
+        </div>
       </main>
     </>
   );
