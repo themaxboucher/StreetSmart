@@ -22,13 +22,6 @@ export const fetchBikePaths = async (bounds) => {
     const north = bounds.getNorthEast().lat();
     const east = bounds.getNorthEast().lng();
 
-    console.log("Fetching bike paths for bounds:", {
-      south,
-      west,
-      north,
-      east,
-    });
-
     const query = `[out:json];
 (
   way["highway"="cycleway"](${south},${west},${north},${east});
