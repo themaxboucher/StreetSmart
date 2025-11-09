@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Map } from "@/components/map";
 import { CityStats } from "@/components/CityStats";
@@ -7,6 +7,7 @@ import { cities } from "@/constants/cities";
 export function CityDetail() {
   const { cityName } = useParams();
   const navigate = useNavigate();
+  const [selectedBikePath, setSelectedBikePath] = useState(null);
 
   const selectedCity = useMemo(
     () =>
@@ -39,11 +40,20 @@ export function CityDetail() {
 
   const handleCitySelect = (city) => {
     navigate(`/city/${city.name}`);
+    setSelectedBikePath(null); // Clear selected bike path when changing cities
+  };
+
+  const handleBikePathSelect = (bikePath) => {
+    setSelectedBikePath(bikePath);
   };
 
   return (
     <div className="flex w-full h-full">
-      <CityStats city={selectedCity} />
+      <CityStats
+        city={selectedCity}
+        selectedBikePath={selectedBikePath}
+        onClearBikePath={() => setSelectedBikePath(null)}
+      />
 
       {/* Map */}
       <div className="flex-1 overflow-hidden">
@@ -53,6 +63,9 @@ export function CityDetail() {
           cities={cities}
           showBikePathsByDefault={true}
           showMarkers={false}
+          onBikePathSelect={handleBikePathSelect}
+          onClearBikePath={() => setSelectedBikePath(null)}
+          selectedBikePath={selectedBikePath}
         />
       </div>
     </div>

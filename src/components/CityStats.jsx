@@ -3,14 +3,42 @@ import { ChevronLeft, Bike, Bus, Footprints } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bikePathsData from "@/components/data/bike-paths.js";
 
-export function CityStats({ city }) {
+// Calculate distance in kilometers between coordinates using Haversine formula
+function calculateDistance(coordinates) {
+  if (!coordinates || coordinates.length < 2) return 0;
+
+  let distanceKm = 0;
+  for (let i = 0; i < coordinates.length - 1; i++) {
+    const lat1 = (coordinates[i].lat * Math.PI) / 180;
+    const lat2 = (coordinates[i + 1].lat * Math.PI) / 180;
+    const deltaLat = lat2 - lat1;
+    const deltaLng =
+      ((coordinates[i + 1].lng - coordinates[i].lng) * Math.PI) / 180;
+
+    const a =
+      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(lat1) *
+        Math.cos(lat2) *
+        Math.sin(deltaLng / 2) *
+        Math.sin(deltaLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    distanceKm += 6371 * c; // Earth's radius in km
+  }
+
+  return distanceKm;
+}
+
+export function CityStats({ city, selectedBikePath, onClearBikePath }) {
   const navigate = useNavigate();
 
   // Calculate bike paths statistics for Calgary
   const bikePathsStats = {
     count: bikePathsData.length,
     totalDistance: bikePathsData
-      .reduce((sum, path) => sum + (path.distance || 0), 0)
+      .reduce((sum, path) => {
+        const distance = path.distance || calculateDistance(path.coordinates);
+        return sum + distance;
+      }, 0)
       .toFixed(1),
   };
 
