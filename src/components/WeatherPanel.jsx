@@ -1,5 +1,53 @@
-// components/WeatherPanel.jsx
-export default function WeatherPanel({ weather }) {
+import { useState, useEffect } from 'react';
+
+// Cache weather data for 5 minutes
+const weatherCache = new Map();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+export function WeatherPanel({ city }) {
+  const [weather, setWeather] = useState(null);
+  
+  useEffect(() => {
+    if (!city) return;
+    
+    const abortController = new AbortController();
+    const cityKey = city.name.toLowerCase();
+    
+    const fetchWeather = async () => {
+      // Check cache first
+      const cached = weatherCache.get(cityKey);
+      if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+        setWeather(cached.data);
+        return;
+      }
+      
+      try {
+        const res = await fetch(
+          `http://localhost:7032/weather?city=${encodeURIComponent(city.name)}`,
+          { signal: abortController.signal }
+        );
+        const data = await res.json();
+        
+        if (!data.error) {
+          // Update cache and state
+          weatherCache.set(cityKey, { data, timestamp: Date.now() });
+          if (!abortController.signal.aborted) {
+            setWeather(data);
+          }
+        }
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error('Error fetching weather:', error);
+        }
+      }
+    };
+    
+    fetchWeather();
+    
+    // Cleanup function to abort in-flight requests
+    return () => abortController.abort();
+  }, [city]);
+
   if (!weather) return null;
 
   const aqiLevels = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];

@@ -26,7 +26,7 @@ export default function CityGrid({onSelectCity}) {
         <Card
           key={city.name}
           className="group relative w-full cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
-          onClick={() => onSelectCity?.(city.name)}
+          onClick={() => onSelectCity?.(city)}
         >
         {/* Background image */}
         <div
@@ -62,7 +62,7 @@ export default function CityGrid({onSelectCity}) {
               <span>{city.transport}</span>
             </div>
             </div>
-            <Button variant="secondary" className="w-full mt-2" onClick={() => onSelectCity?.(city.name)}>
+            <Button variant="secondary" className="w-full mt-2" onClick={() => onSelectCity?.(city)}>
               View Map
             </Button>
           </CardContent>
