@@ -5,6 +5,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
+import { MapPin, Flower, Shield, Network, TrendingUp } from "lucide-react";
 
 // Helper component for rating display
 function RatingBar({ value, max = 10 }) {
@@ -38,6 +39,7 @@ export function BikePathDialog({ isOpen, onOpenChange, pathInfo }) {
       <DialogContent className="max-w-sm p-0 overflow-hidden">
         <>
           {/* Image */}
+
           <img
             src="https://cdn.visitcalgary.com/containers/media/neighbourhoods/downtown/neighbourhood_downtown_memorial_drive_downtown_biking.jpg/861420d77bd2877b6e2f4877b3c288f5/neighbourhood_downtown_memorial_drive_downtown_biking.webp"
             alt="Bike lane"
@@ -45,24 +47,27 @@ export function BikePathDialog({ isOpen, onOpenChange, pathInfo }) {
           />
 
           {/* Content */}
-          <div className="p-6">
+          <div className="px-6 pb-6 pt-2">
             <DialogHeader className="mb-4">
               <DialogTitle className="text-lg font-semibold text-gray-900">
                 {pathInfo.name || "Bike Path"}
               </DialogTitle>
               {pathInfo.description && (
-                <DialogDescription className="text-xs text-gray-500 mt-1">
+                <DialogDescription className="text-xs text-gray-500">
                   {pathInfo.description}
                 </DialogDescription>
               )}
             </DialogHeader>
 
-            <div className="space-y-3">
+            <div className="space-y-3 mt-4">
               {/* Distance */}
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                  Distance
-                </span>
+                <div className="flex items-center gap-2">
+                  <MapPin size={16} className="text-gray-500" />
+                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    Distance
+                  </span>
+                </div>
                 <span className="text-sm text-gray-900 font-medium">
                   {pathInfo.distance?.toFixed(2)} km
                 </span>
@@ -73,33 +78,45 @@ export function BikePathDialog({ isOpen, onOpenChange, pathInfo }) {
 
               {/* Scenery */}
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                  Scenery
-                </span>
+                <div className="flex items-center gap-2">
+                  <Flower size={16} className="text-gray-500" />
+                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    Scenery
+                  </span>
+                </div>
                 <RatingBar value={pathInfo.scenery} />
               </div>
 
               {/* Safety */}
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                  Safety
-                </span>
+                <div className="flex items-center gap-2">
+                  <Shield size={16} className="text-gray-500" />
+                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    Safety
+                  </span>
+                </div>
                 <RatingBar value={pathInfo.safeness} />
               </div>
 
               {/* Connectivity */}
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                  Connectivity
-                </span>
+                <div className="flex items-center gap-2">
+                  <Network size={16} className="text-gray-500" />
+                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    Connectivity
+                  </span>
+                </div>
                 <RatingBar value={pathInfo.connectivity} />
               </div>
 
               {/* Steepness */}
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                  Steepness
-                </span>
+                <div className="flex items-center gap-2">
+                  <TrendingUp size={16} className="text-gray-500" />
+                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    Steepness
+                  </span>
+                </div>
                 <RatingBar value={Math.round(pathInfo.steepness)} />
               </div>
             </div>
