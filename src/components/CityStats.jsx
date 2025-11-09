@@ -1,9 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Bike, Bus, Footprints } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import bikePathsData from "@/components/data/bike-paths.js";
 
 export function CityStats({ city }) {
   const navigate = useNavigate();
+
+  // Calculate bike paths statistics for Calgary
+  const bikePathsStats = {
+    count: bikePathsData.length,
+    totalDistance: bikePathsData
+      .reduce((sum, path) => sum + (path.distance || 0), 0)
+      .toFixed(1),
+  };
 
   if (!city) {
     return null;
@@ -65,13 +74,37 @@ export function CityStats({ city }) {
 
       {/* Stats section */}
       <div className="flex-1 p-6">
-        <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
-          Scores
-        </h3>
-
         <div className="space-y-4">
           {stats.map((stat) => {
             const Icon = stat.icon;
+            const isCycling = stat.label === "Cycling";
+            const isComingSoon = stat.label !== "Cycling";
+            const hasData = stat.value !== null && stat.value !== undefined;
+
+            // Show nothing if no data available (for non-Calgary cities)
+            if (!hasData) {
+              return (
+                <div
+                  key={stat.label}
+                  className={`${stat.bgColor} rounded-lg p-4`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Icon size={20} className={stat.color} />
+                      <span className="font-medium text-gray-900">
+                        {stat.label}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <span className="inline-block px-2.5 py-1 bg-gray-300 text-gray-700 text-xs font-medium rounded-full">
+                      Coming soon
+                    </span>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <div
                 key={stat.label}
@@ -97,18 +130,36 @@ export function CityStats({ city }) {
                     style={{ width: `${(stat.value / 10) * 100}%` }}
                   />
                 </div>
+
+                {/* Additional info for Cycling */}
+                {isCycling && city.name === "Calgary" && (
+                  <div className="mt-3 pt-3 border-t border-blue-200 space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-700">Bike Paths:</span>
+                      <span className="font-semibold text-gray-900">
+                        {bikePathsStats.count}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-700">Total Distance:</span>
+                      <span className="font-semibold text-gray-900">
+                        {bikePathsStats.totalDistance} km
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Coming soon badge for other stats */}
+                {isComingSoon && (
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <span className="inline-block px-2.5 py-1 bg-gray-300 text-gray-700 text-xs font-medium rounded-full">
+                      Coming soon
+                    </span>
+                  </div>
+                )}
               </div>
             );
           })}
-        </div>
-
-        {/* Summary */}
-        <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600">
-            <span className="font-semibold text-gray-900">{city.name}</span> is
-            a great city for sustainable urban mobility. Check out the bike
-            paths on the map to explore the cycling infrastructure!
-          </p>
         </div>
       </div>
     </div>

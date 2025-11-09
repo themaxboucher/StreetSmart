@@ -20,8 +20,8 @@ export function CityCard({ city, onSelectCity }) {
         <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/20 to-transparent" />
 
         {/* City Title - Always Visible */}
-        <div className="absolute inset-0 flex flex-col justify-end p-4">
-          <h3 className="text-lg font-semibold text-white">{city.name}</h3>
+        <div className="absolute inset-0 flex flex-col justify-end p-4 space-y-1">
+          <h3 className="text-xl font-semibold text-white">{city.name}</h3>
           <p className="text-xs text-gray-200">{city.country}</p>
         </div>
 
@@ -32,33 +32,25 @@ export function CityCard({ city, onSelectCity }) {
             <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 text-center">
               <Bike size={16} className="text-white mx-auto mb-1" />
               <p className="text-xs text-white/80 font-medium">Cycling</p>
-              <p className="text-lg font-bold text-white">{city.cycling}</p>
+              <p className="text-lg font-bold text-white">
+                {city.cycling !== null ? city.cycling : "-"}
+              </p>
             </div>
             <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 text-center">
               <Bus size={16} className="text-white mx-auto mb-1" />
               <p className="text-xs text-white/80 font-medium">Transit</p>
               <p className="text-lg font-bold text-white">
-                {city.publicTransport}
+                {city.publicTransport !== null ? city.publicTransport : "-"}
               </p>
             </div>
             <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 text-center">
               <Footprints size={16} className="text-white mx-auto mb-1" />
               <p className="text-xs text-white/80 font-medium">Walkable</p>
-              <p className="text-lg font-bold text-white">{city.walkability}</p>
+              <p className="text-lg font-bold text-white">
+                {city.walkability !== null ? city.walkability : "-"}
+              </p>
             </div>
           </div>
-
-          {/* Action Button */}
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelectCity?.(city);
-            }}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
-          >
-            <Zap size={16} />
-            View on Map
-          </Button>
         </div>
       </div>
     </div>
