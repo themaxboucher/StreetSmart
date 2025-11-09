@@ -1,6 +1,8 @@
 const bikePaths = [
   {
     id: "route-0",
+    name: "Bow River Pathway",
+    description: "Connects through riverside parks and green spaces",
     coordinates: [
       {
         lat: 51.0568214,
@@ -600,6 +602,7 @@ const bikePaths = [
     scenery: 9,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 10,
     crowdDensity: 10,
     steepness: 0,
@@ -609,6 +612,8 @@ const bikePaths = [
   },
   {
     id: "route-1",
+    name: "Elbow River Trail",
+    description: "Scenic route along the river with city views",
     coordinates: [
       {
         lat: 51.0596181,
@@ -1024,6 +1029,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 4,
     footTraffic: 5,
+    connectivity: 6,
     safety: 5,
     crowdDensity: 5,
     steepness: 0,
@@ -1033,6 +1039,8 @@ const bikePaths = [
   },
   {
     id: "route-2",
+    name: "Crescent Road Loop",
+    description: "Popular cycling loop with moderate terrain",
     coordinates: [
       {
         lat: 51.0117736,
@@ -3592,6 +3600,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0,
@@ -3601,6 +3610,8 @@ const bikePaths = [
   },
   {
     id: "route-3",
+    name: "Downtown Connector",
+    description: "Direct route linking downtown neighborhoods",
     coordinates: [
       {
         lat: 51.0545426,
@@ -3816,6 +3827,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 6,
     footTraffic: 6,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 7,
     steepness: 0,
@@ -3825,6 +3837,8 @@ const bikePaths = [
   },
   {
     id: "route-4",
+    name: "East Village Link",
+    description: "Modern path through revitalized area",
     coordinates: [
       {
         lat: 51.0159455,
@@ -3844,6 +3858,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 8,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -3853,6 +3868,8 @@ const bikePaths = [
   },
   {
     id: "route-5",
+    name: "Bridgeland Route",
+    description: "Well-maintained connector through residential area",
     coordinates: [
       {
         lat: 50.9978071,
@@ -4080,6 +4097,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 4,
     footTraffic: 4,
+    connectivity: 5,
     safety: 4,
     crowdDensity: 5,
     steepness: 0,
@@ -4089,6 +4107,8 @@ const bikePaths = [
   },
   {
     id: "route-6",
+    name: "Inglewood Path",
+    description: "Historic neighborhood route with character",
     coordinates: [
       {
         lat: 51.0352758,
@@ -4480,6 +4500,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -4489,6 +4510,8 @@ const bikePaths = [
   },
   {
     id: "route-7",
+    name: "South Calgary Trail",
+    description: "Southern route through park system",
     coordinates: [
       {
         lat: 51.093227,
@@ -4795,6 +4818,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 3,
+    connectivity: 6,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -4804,6 +4828,8 @@ const bikePaths = [
   },
   {
     id: "route-8",
+    name: "Marda Loop Connection",
+    description: "Charming boutique area access",
     coordinates: [
       {
         lat: 51.0814276,
@@ -6762,6 +6788,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 8,
+    connectivity: 6,
     safety: 8,
     crowdDensity: 8,
     steepness: 0,
@@ -6771,6 +6798,8 @@ const bikePaths = [
   },
   {
     id: "route-9",
+    name: "Mission Park Ride",
+    description: "Peaceful park-based cycling path",
     coordinates: [
       {
         lat: 51.0522654,
@@ -7929,6 +7958,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 3,
     footTraffic: 3,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 4,
     steepness: 0,
@@ -7938,6 +7968,8 @@ const bikePaths = [
   },
   {
     id: "route-10",
+    name: "Aspen Landing Trail",
+    description: "Route through major shopping district",
     coordinates: [
       {
         lat: 51.0303416,
@@ -8108,6 +8140,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 8,
     crowdDensity: 8,
     steepness: 0,
@@ -8117,6 +8150,8 @@ const bikePaths = [
   },
   {
     id: "route-11",
+    name: "North Shore Route",
+    description: "Northern residential area connection",
     coordinates: [
       {
         lat: 51.1020196,
@@ -10143,6 +10178,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 8,
     steepness: 0,
@@ -10152,6 +10188,8 @@ const bikePaths = [
   },
   {
     id: "route-12",
+    name: "Heritage Park Trail",
+    description: "Heritage destination bike path",
     coordinates: [
       {
         lat: 51.0595524,
@@ -12206,6 +12244,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 4,
+    connectivity: 6,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -12215,6 +12254,8 @@ const bikePaths = [
   },
   {
     id: "route-13",
+    name: "Eau Claire Parkway",
+    description: "Waterfront recreation area access",
     coordinates: [
       {
         lat: 51.0874834,
@@ -12405,6 +12446,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 9,
+    connectivity: 6,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -12414,6 +12456,8 @@ const bikePaths = [
   },
   {
     id: "route-14",
+    name: "Bridgeland North",
+    description: "New development area route",
     coordinates: [
       {
         lat: 51.0424194,
@@ -12520,6 +12564,7 @@ const bikePaths = [
     scenery: 9,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 10,
     steepness: 0,
@@ -12529,6 +12574,8 @@ const bikePaths = [
   },
   {
     id: "route-15",
+    name: "Deer Run Trail",
+    description: "Natural area pathway",
     coordinates: [
       {
         lat: 51.0487598,
@@ -12579,6 +12626,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 6,
+    connectivity: 6,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -12588,6 +12636,8 @@ const bikePaths = [
   },
   {
     id: "route-16",
+    name: "Glenmore Trail",
+    description: "Major traffic-free route",
     coordinates: [
       {
         lat: 51.0442895,
@@ -12610,6 +12660,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 6,
     footTraffic: 6,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 6,
     steepness: 0.1,
@@ -12619,6 +12670,8 @@ const bikePaths = [
   },
   {
     id: "route-17",
+    name: "Memorial Drive Path",
+    description: "Downtown core access path",
     coordinates: [
       {
         lat: 51.035809,
@@ -12649,6 +12702,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 1,
     footTraffic: 2,
+    connectivity: 6,
     safety: 2,
     crowdDensity: 2,
     steepness: 0,
@@ -12658,6 +12712,8 @@ const bikePaths = [
   },
   {
     id: "route-18",
+    name: "Macleod Trail Link",
+    description: "Major avenue connector",
     coordinates: [
       {
         lat: 51.0383546,
@@ -12696,6 +12752,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 4,
     footTraffic: 5,
+    connectivity: 6,
     safety: 5,
     crowdDensity: 5,
     steepness: 0,
@@ -12705,6 +12762,8 @@ const bikePaths = [
   },
   {
     id: "route-19",
+    name: "Airport Trail",
+    description: "Direct airport access route",
     coordinates: [
       {
         lat: 51.0815452,
@@ -13339,6 +13398,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 8,
     steepness: 0,
@@ -13348,6 +13408,8 @@ const bikePaths = [
   },
   {
     id: "route-20",
+    name: "Barlow Trail Route",
+    description: "Dedicated cycling infrastructure",
     coordinates: [
       {
         lat: 51.0420962,
@@ -14478,6 +14540,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 1,
     footTraffic: 2,
+    connectivity: 6,
     safety: 2,
     crowdDensity: 2,
     steepness: 0,
@@ -14487,6 +14550,8 @@ const bikePaths = [
   },
   {
     id: "route-21",
+    name: "Deerfoot Trail Crossing",
+    description: "Protected intersection crossings",
     coordinates: [
       {
         lat: 51.1071483,
@@ -14641,6 +14706,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 4,
     footTraffic: 5,
+    connectivity: 6,
     safety: 5,
     crowdDensity: 5,
     steepness: 0.1,
@@ -14650,6 +14716,8 @@ const bikePaths = [
   },
   {
     id: "route-22",
+    name: "Paved Pathway System",
+    description: "Family-friendly paved surface",
     coordinates: [
       {
         lat: 51.1079645,
@@ -14800,6 +14868,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 6,
     footTraffic: 6,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 7,
     steepness: 0.1,
@@ -14809,6 +14878,8 @@ const bikePaths = [
   },
   {
     id: "route-23",
+    name: "Urban Connector",
+    description: "Multi-use pathway through neighborhoods",
     coordinates: [
       {
         lat: 51.0303639,
@@ -15051,6 +15122,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 10,
     steepness: 0,
@@ -15060,6 +15132,8 @@ const bikePaths = [
   },
   {
     id: "route-24",
+    name: "Scenic Loop",
+    description: "Recreational cycling destination",
     coordinates: [
       {
         lat: 51.0481863,
@@ -15514,6 +15588,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 8,
     crowdDensity: 8,
     steepness: 0,
@@ -15523,6 +15598,8 @@ const bikePaths = [
   },
   {
     id: "route-25",
+    name: "River Pathway",
+    description: "Riverside recreation access",
     coordinates: [
       {
         lat: 51.0574391,
@@ -17473,6 +17550,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -17482,6 +17560,8 @@ const bikePaths = [
   },
   {
     id: "route-26",
+    name: "Park Access Trail",
+    description: "Park system connector",
     coordinates: [
       {
         lat: 51.0571185,
@@ -21724,6 +21804,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -21733,6 +21814,8 @@ const bikePaths = [
   },
   {
     id: "route-27",
+    name: "Green Corridor",
+    description: "Environmental corridor route",
     coordinates: [
       {
         lat: 51.0944703,
@@ -23487,6 +23570,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0,
@@ -23496,6 +23580,8 @@ const bikePaths = [
   },
   {
     id: "route-28",
+    name: "Community Link",
+    description: "Neighborhood accessibility path",
     coordinates: [
       {
         lat: 51.0964784,
@@ -24366,6 +24452,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 8,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -24375,6 +24462,8 @@ const bikePaths = [
   },
   {
     id: "route-29",
+    name: "Transit Connection",
+    description: "Public transit integration point",
     coordinates: [
       {
         lat: 51.0865887,
@@ -24437,6 +24526,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0.1,
@@ -24446,6 +24536,8 @@ const bikePaths = [
   },
   {
     id: "route-30",
+    name: "Bow River Pathway",
+    description: "Connects through riverside parks and green spaces",
     coordinates: [
       {
         lat: 51.0165948,
@@ -24532,6 +24624,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 2,
     crowdDensity: 3,
     steepness: 0,
@@ -24541,6 +24634,8 @@ const bikePaths = [
   },
   {
     id: "route-31",
+    name: "Elbow River Trail",
+    description: "Scenic route along the river with city views",
     coordinates: [
       {
         lat: 51.0301905,
@@ -25235,6 +25330,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 6,
     footTraffic: 6,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 7,
     steepness: 0,
@@ -25244,6 +25340,8 @@ const bikePaths = [
   },
   {
     id: "route-32",
+    name: "Crescent Road Loop",
+    description: "Popular cycling loop with moderate terrain",
     coordinates: [
       {
         lat: 51.0457485,
@@ -25346,6 +25444,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 2,
     crowdDensity: 2,
     steepness: 0,
@@ -25355,6 +25454,8 @@ const bikePaths = [
   },
   {
     id: "route-33",
+    name: "Downtown Connector",
+    description: "Direct route linking downtown neighborhoods",
     coordinates: [
       {
         lat: 51.1352309,
@@ -25421,6 +25522,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 5,
     steepness: 0,
@@ -25430,6 +25532,8 @@ const bikePaths = [
   },
   {
     id: "route-34",
+    name: "East Village Link",
+    description: "Modern path through revitalized area",
     coordinates: [
       {
         lat: 51.0507926,
@@ -25504,6 +25608,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 6,
     footTraffic: 7,
+    connectivity: 6,
     safety: 7,
     crowdDensity: 7,
     steepness: 0,
@@ -25513,6 +25618,8 @@ const bikePaths = [
   },
   {
     id: "route-35",
+    name: "Bridgeland Route",
+    description: "Well-maintained connector through residential area",
     coordinates: [
       {
         lat: 51.0462153,
@@ -25599,6 +25706,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 4,
+    connectivity: 6,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -25608,6 +25716,8 @@ const bikePaths = [
   },
   {
     id: "route-36",
+    name: "Inglewood Path",
+    description: "Historic neighborhood route with character",
     coordinates: [
       {
         lat: 51.0354251,
@@ -25722,6 +25832,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -25731,6 +25842,8 @@ const bikePaths = [
   },
   {
     id: "route-37",
+    name: "South Calgary Trail",
+    description: "Southern route through park system",
     coordinates: [
       {
         lat: 51.0175824,
@@ -25817,6 +25930,7 @@ const bikePaths = [
     scenery: 9,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 10,
     crowdDensity: 10,
     steepness: 0,
@@ -25826,6 +25940,8 @@ const bikePaths = [
   },
   {
     id: "route-38",
+    name: "Marda Loop Connection",
+    description: "Charming boutique area access",
     coordinates: [
       {
         lat: 51.0192776,
@@ -26052,6 +26168,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -26061,6 +26178,8 @@ const bikePaths = [
   },
   {
     id: "route-39",
+    name: "Mission Park Ride",
+    description: "Peaceful park-based cycling path",
     coordinates: [
       {
         lat: 51.1147842,
@@ -26127,6 +26246,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 8,
+    connectivity: 5,
     safety: 8,
     crowdDensity: 9,
     steepness: 0,
@@ -26136,6 +26256,8 @@ const bikePaths = [
   },
   {
     id: "route-40",
+    name: "Aspen Landing Trail",
+    description: "Route through major shopping district",
     coordinates: [
       {
         lat: 51.0590881,
@@ -27250,6 +27372,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 8,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -27259,6 +27382,8 @@ const bikePaths = [
   },
   {
     id: "route-41",
+    name: "North Shore Route",
+    description: "Northern residential area connection",
     coordinates: [
       {
         lat: 50.9895848,
@@ -29513,6 +29638,7 @@ const bikePaths = [
     scenery: 0,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 1,
     crowdDensity: 2,
     steepness: 0.1,
@@ -29522,6 +29648,8 @@ const bikePaths = [
   },
   {
     id: "route-42",
+    name: "Heritage Park Trail",
+    description: "Heritage destination bike path",
     coordinates: [
       {
         lat: 51.0087243,
@@ -29588,6 +29716,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 8,
     steepness: 0,
@@ -29597,6 +29726,8 @@ const bikePaths = [
   },
   {
     id: "route-43",
+    name: "Eau Claire Parkway",
+    description: "Waterfront recreation area access",
     coordinates: [
       {
         lat: 51.0673912,
@@ -29655,6 +29786,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 8,
     crowdDensity: 8,
     steepness: 0,
@@ -29664,6 +29796,8 @@ const bikePaths = [
   },
   {
     id: "route-44",
+    name: "Bridgeland North",
+    description: "New development area route",
     coordinates: [
       {
         lat: 50.9036071,
@@ -29730,6 +29864,7 @@ const bikePaths = [
     scenery: 10,
     carTraffic: 0,
     footTraffic: 1,
+    connectivity: 6,
     safety: 1,
     crowdDensity: 1,
     steepness: 0,
@@ -29739,6 +29874,8 @@ const bikePaths = [
   },
   {
     id: "route-45",
+    name: "Deer Run Trail",
+    description: "Natural area pathway",
     coordinates: [
       {
         lat: 51.0233333,
@@ -29905,6 +30042,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 8,
     crowdDensity: 8,
     steepness: 0,
@@ -29914,6 +30052,8 @@ const bikePaths = [
   },
   {
     id: "route-46",
+    name: "Glenmore Trail",
+    description: "Major traffic-free route",
     coordinates: [
       {
         lat: 51.0160546,
@@ -29992,6 +30132,7 @@ const bikePaths = [
     scenery: 10,
     carTraffic: 0,
     footTraffic: 1,
+    connectivity: 6,
     safety: 1,
     crowdDensity: 1,
     steepness: 0,
@@ -30001,6 +30142,8 @@ const bikePaths = [
   },
   {
     id: "route-47",
+    name: "Memorial Drive Path",
+    description: "Downtown core access path",
     coordinates: [
       {
         lat: 51.0471956,
@@ -30243,6 +30386,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 9,
+    connectivity: 6,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -30252,6 +30396,8 @@ const bikePaths = [
   },
   {
     id: "route-48",
+    name: "Macleod Trail Link",
+    description: "Major avenue connector",
     coordinates: [
       {
         lat: 51.1025296,
@@ -32898,6 +33044,7 @@ const bikePaths = [
     scenery: 0,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 1,
     crowdDensity: 2,
     steepness: 0,
@@ -32907,6 +33054,8 @@ const bikePaths = [
   },
   {
     id: "route-49",
+    name: "Airport Trail",
+    description: "Direct airport access route",
     coordinates: [
       {
         lat: 51.0422972,
@@ -35649,6 +35798,7 @@ const bikePaths = [
     scenery: 9,
     carTraffic: 9,
     footTraffic: 10,
+    connectivity: 6,
     safety: 10,
     crowdDensity: 0,
     steepness: 0,
@@ -35658,6 +35808,8 @@ const bikePaths = [
   },
   {
     id: "route-50",
+    name: "Barlow Trail Route",
+    description: "Dedicated cycling infrastructure",
     coordinates: [
       {
         lat: 51.0893522,
@@ -36596,6 +36748,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 4,
     footTraffic: 5,
+    connectivity: 6,
     safety: 5,
     crowdDensity: 5,
     steepness: 0,
@@ -36605,6 +36758,8 @@ const bikePaths = [
   },
   {
     id: "route-51",
+    name: "Deerfoot Trail Crossing",
+    description: "Protected intersection crossings",
     coordinates: [
       {
         lat: 51.0831162,
@@ -37115,6 +37270,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0,
@@ -37124,6 +37280,8 @@ const bikePaths = [
   },
   {
     id: "route-52",
+    name: "Paved Pathway System",
+    description: "Family-friendly paved surface",
     coordinates: [
       {
         lat: 51.0523143,
@@ -37250,6 +37408,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 3,
+    connectivity: 5,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -37259,6 +37418,8 @@ const bikePaths = [
   },
   {
     id: "route-53",
+    name: "Urban Connector",
+    description: "Multi-use pathway through neighborhoods",
     coordinates: [
       {
         lat: 51.0411717,
@@ -38045,6 +38206,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 3,
     footTraffic: 3,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0.1,
@@ -38054,6 +38216,8 @@ const bikePaths = [
   },
   {
     id: "route-54",
+    name: "Scenic Loop",
+    description: "Recreational cycling destination",
     coordinates: [
       {
         lat: 51.0409713,
@@ -38212,6 +38376,7 @@ const bikePaths = [
     scenery: 7,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 8,
     steepness: 0,
@@ -38221,6 +38386,8 @@ const bikePaths = [
   },
   {
     id: "route-55",
+    name: "River Pathway",
+    description: "Riverside recreation access",
     coordinates: [
       {
         lat: 51.0773777,
@@ -38391,6 +38558,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 4,
+    connectivity: 6,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -38400,6 +38568,8 @@ const bikePaths = [
   },
   {
     id: "route-56",
+    name: "Park Access Trail",
+    description: "Park system connector",
     coordinates: [
       {
         lat: 51.1101991,
@@ -38962,6 +39132,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0.1,
@@ -38971,6 +39142,8 @@ const bikePaths = [
   },
   {
     id: "route-57",
+    name: "Green Corridor",
+    description: "Environmental corridor route",
     coordinates: [
       {
         lat: 51.0711385,
@@ -39069,6 +39242,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -39078,6 +39252,8 @@ const bikePaths = [
   },
   {
     id: "route-58",
+    name: "Community Link",
+    description: "Neighborhood accessibility path",
     coordinates: [
       {
         lat: 50.8978707,
@@ -39368,6 +39544,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 5,
     steepness: 0,
@@ -39377,6 +39554,8 @@ const bikePaths = [
   },
   {
     id: "route-59",
+    name: "Transit Connection",
+    description: "Public transit integration point",
     coordinates: [
       {
         lat: 50.901259,
@@ -39575,6 +39754,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 10,
     steepness: 0,
@@ -39584,6 +39764,8 @@ const bikePaths = [
   },
   {
     id: "route-60",
+    name: "Bow River Pathway",
+    description: "Connects through riverside parks and green spaces",
     coordinates: [
       {
         lat: 51.0585794,
@@ -39774,6 +39956,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 2,
     crowdDensity: 2,
     steepness: 0.1,
@@ -39783,6 +39966,8 @@ const bikePaths = [
   },
   {
     id: "route-61",
+    name: "Elbow River Trail",
+    description: "Scenic route along the river with city views",
     coordinates: [
       {
         lat: 51.0395899,
@@ -40009,6 +40194,7 @@ const bikePaths = [
     scenery: 0,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 1,
     crowdDensity: 2,
     steepness: 0,
@@ -40018,6 +40204,8 @@ const bikePaths = [
   },
   {
     id: "route-62",
+    name: "Crescent Road Loop",
+    description: "Popular cycling loop with moderate terrain",
     coordinates: [
       {
         lat: 51.0391602,
@@ -40116,6 +40304,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -40125,6 +40314,8 @@ const bikePaths = [
   },
   {
     id: "route-63",
+    name: "Downtown Connector",
+    description: "Direct route linking downtown neighborhoods",
     coordinates: [
       {
         lat: 51.0508134,
@@ -40347,6 +40538,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 9,
     footTraffic: 9,
+    connectivity: 5,
     safety: 9,
     crowdDensity: 10,
     steepness: 0,
@@ -40356,6 +40548,8 @@ const bikePaths = [
   },
   {
     id: "route-64",
+    name: "East Village Link",
+    description: "Modern path through revitalized area",
     coordinates: [
       {
         lat: 51.0701207,
@@ -42970,6 +43164,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 4,
     footTraffic: 4,
+    connectivity: 5,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -42979,6 +43174,8 @@ const bikePaths = [
   },
   {
     id: "route-65",
+    name: "Bridgeland Route",
+    description: "Well-maintained connector through residential area",
     coordinates: [
       {
         lat: 51.0385258,
@@ -44177,6 +44374,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 2,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 3,
     steepness: 0,
@@ -44186,6 +44384,8 @@ const bikePaths = [
   },
   {
     id: "route-66",
+    name: "Inglewood Path",
+    description: "Historic neighborhood route with character",
     coordinates: [
       {
         lat: 51.0451499,
@@ -46416,6 +46616,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 3,
+    connectivity: 5,
     safety: 4,
     crowdDensity: 4,
     steepness: 0,
@@ -46425,6 +46626,8 @@ const bikePaths = [
   },
   {
     id: "route-67",
+    name: "South Calgary Trail",
+    description: "Southern route through park system",
     coordinates: [
       {
         lat: 51.0427722,
@@ -46651,6 +46854,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 6,
+    connectivity: 6,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -46660,6 +46864,8 @@ const bikePaths = [
   },
   {
     id: "route-68",
+    name: "Marda Loop Connection",
+    description: "Charming boutique area access",
     coordinates: [
       {
         lat: 51.0300598,
@@ -48762,6 +48968,7 @@ const bikePaths = [
     scenery: 8,
     carTraffic: 8,
     footTraffic: 9,
+    connectivity: 6,
     safety: 9,
     crowdDensity: 9,
     steepness: 0,
@@ -48771,6 +48978,8 @@ const bikePaths = [
   },
   {
     id: "route-69",
+    name: "Mission Park Ride",
+    description: "Peaceful park-based cycling path",
     coordinates: [
       {
         lat: 51.0508078,
@@ -49153,6 +49362,7 @@ const bikePaths = [
     scenery: 2,
     carTraffic: 2,
     footTraffic: 3,
+    connectivity: 6,
     safety: 3,
     crowdDensity: 3,
     steepness: 0.1,
@@ -49162,6 +49372,8 @@ const bikePaths = [
   },
   {
     id: "route-70",
+    name: "Aspen Landing Trail",
+    description: "Route through major shopping district",
     coordinates: [
       {
         lat: 51.0415745,
@@ -49400,6 +49612,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 7,
     footTraffic: 7,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 8,
     steepness: 0,
@@ -49409,6 +49622,8 @@ const bikePaths = [
   },
   {
     id: "route-71",
+    name: "North Shore Route",
+    description: "Northern residential area connection",
     coordinates: [
       {
         lat: 51.0742845,
@@ -49723,6 +49938,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 6,
+    connectivity: 6,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -49732,6 +49948,8 @@ const bikePaths = [
   },
   {
     id: "route-72",
+    name: "Heritage Park Trail",
+    description: "Heritage destination bike path",
     coordinates: [
       {
         lat: 51.0359678,
@@ -50334,6 +50552,7 @@ const bikePaths = [
     scenery: 1,
     carTraffic: 1,
     footTraffic: 1,
+    connectivity: 5,
     safety: 2,
     crowdDensity: 2,
     steepness: 0,
@@ -50343,6 +50562,8 @@ const bikePaths = [
   },
   {
     id: "route-73",
+    name: "Eau Claire Parkway",
+    description: "Waterfront recreation area access",
     coordinates: [
       {
         lat: 51.0178669,
@@ -52425,6 +52646,7 @@ const bikePaths = [
     scenery: 3,
     carTraffic: 3,
     footTraffic: 3,
+    connectivity: 5,
     safety: 3,
     crowdDensity: 4,
     steepness: 0,
@@ -52434,6 +52656,8 @@ const bikePaths = [
   },
   {
     id: "route-74",
+    name: "Bridgeland North",
+    description: "New development area route",
     coordinates: [
       {
         lat: 51.0050152,
@@ -54444,6 +54668,7 @@ const bikePaths = [
     scenery: 5,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 6,
     crowdDensity: 6,
     steepness: 0,
@@ -54453,6 +54678,8 @@ const bikePaths = [
   },
   {
     id: "route-75",
+    name: "Deer Run Trail",
+    description: "Natural area pathway",
     coordinates: [
       {
         lat: 50.9118656,
@@ -60059,6 +60286,7 @@ const bikePaths = [
     scenery: 4,
     carTraffic: 5,
     footTraffic: 5,
+    connectivity: 5,
     safety: 5,
     crowdDensity: 6,
     steepness: 0,
@@ -60068,6 +60296,8 @@ const bikePaths = [
   },
   {
     id: "route-76",
+    name: "Glenmore Trail",
+    description: "Major traffic-free route",
     coordinates: [
       {
         lat: 51.0411974,
@@ -60534,6 +60764,7 @@ const bikePaths = [
     scenery: 6,
     carTraffic: 6,
     footTraffic: 6,
+    connectivity: 5,
     safety: 7,
     crowdDensity: 7,
     steepness: 0,
@@ -60543,6 +60774,8 @@ const bikePaths = [
   },
   {
     id: "route-77",
+    name: "Memorial Drive Path",
+    description: "Downtown core access path",
     coordinates: [
       {
         lat: 51.0514817,
@@ -63733,6 +63966,7 @@ const bikePaths = [
     scenery: 10,
     carTraffic: 0,
     footTraffic: 1,
+    connectivity: 6,
     safety: 1,
     crowdDensity: 1,
     steepness: 0,
