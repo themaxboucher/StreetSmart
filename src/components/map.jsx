@@ -159,6 +159,22 @@ export function Map() {
               elementType: "labels.text.fill",
               stylers: [{ color: "#616161" }],
             },
+            {
+              featureType: "poi",
+              stylers: [{ visibility: "off" }],
+            },
+            {
+              featureType: "poi.business",
+              stylers: [{ visibility: "off" }],
+            },
+            {
+              featureType: "poi.park",
+              stylers: [{ visibility: "off" }],
+            },
+            {
+              featureType: "poi.attraction",
+              stylers: [{ visibility: "off" }],
+            },
           ],
         }}
       >
