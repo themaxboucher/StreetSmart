@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -5,7 +6,16 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
-import { MapPin, Flower, Shield, Network, TrendingUp } from "lucide-react";
+import { Button } from "./ui/button";
+import { BikePathRatingDialog } from "./BikePathRatingDialog";
+import {
+  MapPin,
+  Flower,
+  Shield,
+  Network,
+  TrendingUp,
+  Plus,
+} from "lucide-react";
 
 // Helper component for rating display
 function RatingBar({ value, max = 10 }) {
@@ -32,97 +42,120 @@ function RatingBar({ value, max = 10 }) {
 }
 
 export function BikePathDialog({ isOpen, onOpenChange, pathInfo }) {
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
+
   if (!pathInfo) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm p-0 overflow-hidden">
-        <>
-          {/* Image */}
+    <>
+      <Dialog open={isOpen} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-sm p-0 overflow-hidden">
+          <>
+            {/* Image */}
 
-          <img
-            src="https://cdn.visitcalgary.com/containers/media/neighbourhoods/downtown/neighbourhood_downtown_memorial_drive_downtown_biking.jpg/861420d77bd2877b6e2f4877b3c288f5/neighbourhood_downtown_memorial_drive_downtown_biking.webp"
-            alt="Bike lane"
-            className="w-full h-40 object-cover"
-          />
+            <img
+              src="https://cdn.visitcalgary.com/containers/media/neighbourhoods/downtown/neighbourhood_downtown_memorial_drive_downtown_biking.jpg/861420d77bd2877b6e2f4877b3c288f5/neighbourhood_downtown_memorial_drive_downtown_biking.webp"
+              alt="Bike lane"
+              className="w-full h-40 object-cover"
+            />
 
-          {/* Content */}
-          <div className="px-6 pb-6 pt-2">
-            <DialogHeader className="mb-4">
-              <DialogTitle className="text-lg font-semibold text-gray-900">
-                {pathInfo.name || "Bike Path"}
-              </DialogTitle>
-              {pathInfo.description && (
-                <DialogDescription className="text-xs text-gray-500">
-                  {pathInfo.description}
-                </DialogDescription>
-              )}
-            </DialogHeader>
+            {/* Content */}
+            <div className="px-6 pb-6 pt-2">
+              <DialogHeader className="mb-4">
+                <DialogTitle className="text-lg font-semibold text-gray-900">
+                  {pathInfo.name || "Bike Path"}
+                </DialogTitle>
+                {pathInfo.description && (
+                  <DialogDescription className="text-xs text-gray-500">
+                    {pathInfo.description}
+                  </DialogDescription>
+                )}
+              </DialogHeader>
 
-            <div className="space-y-3 mt-4">
-              {/* Distance */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} className="text-gray-500" />
-                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    Distance
+              <div className="space-y-3 mt-4">
+                {/* Distance */}
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <MapPin size={16} className="text-gray-500" />
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                      Distance
+                    </span>
+                  </div>
+                  <span className="text-sm text-gray-900 font-medium">
+                    {pathInfo.distance?.toFixed(2)} km
                   </span>
                 </div>
-                <span className="text-sm text-gray-900 font-medium">
-                  {pathInfo.distance?.toFixed(2)} km
-                </span>
+
+                {/* Divider */}
+                <div className="h-px bg-gray-100 my-2" />
+
+                {/* Scenery */}
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Flower size={16} className="text-gray-500" />
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                      Scenery
+                    </span>
+                  </div>
+                  <RatingBar value={pathInfo.scenery} />
+                </div>
+
+                {/* Safety */}
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Shield size={16} className="text-gray-500" />
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                      Safety
+                    </span>
+                  </div>
+                  <RatingBar value={pathInfo.safeness} />
+                </div>
+
+                {/* Connectivity */}
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Network size={16} className="text-gray-500" />
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                      Connectivity
+                    </span>
+                  </div>
+                  <RatingBar value={pathInfo.connectivity} />
+                </div>
+
+                {/* Steepness */}
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp size={16} className="text-gray-500" />
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+                      Steepness
+                    </span>
+                  </div>
+                  <RatingBar value={Math.round(pathInfo.steepness)} />
+                </div>
               </div>
 
-              {/* Divider */}
-              <div className="h-px bg-gray-100 my-2" />
-
-              {/* Scenery */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <Flower size={16} className="text-gray-500" />
-                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    Scenery
-                  </span>
-                </div>
-                <RatingBar value={pathInfo.scenery} />
-              </div>
-
-              {/* Safety */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <Shield size={16} className="text-gray-500" />
-                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    Safety
-                  </span>
-                </div>
-                <RatingBar value={pathInfo.safeness} />
-              </div>
-
-              {/* Connectivity */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <Network size={16} className="text-gray-500" />
-                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    Connectivity
-                  </span>
-                </div>
-                <RatingBar value={pathInfo.connectivity} />
-              </div>
-
-              {/* Steepness */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <TrendingUp size={16} className="text-gray-500" />
-                  <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    Steepness
-                  </span>
-                </div>
-                <RatingBar value={Math.round(pathInfo.steepness)} />
+              {/* Add Rating Button */}
+              <div className="mt-6">
+                <Button
+                  onClick={() => setIsFormDialogOpen(true)}
+                  className="w-full"
+                  variant="outline"
+                >
+                  <Plus size={16} />
+                  Add Rating
+                </Button>
               </div>
             </div>
-          </div>
-        </>
-      </DialogContent>
-    </Dialog>
+          </>
+        </DialogContent>
+      </Dialog>
+
+      {/* Rating Form Dialog */}
+      <BikePathRatingDialog
+        isOpen={isFormDialogOpen}
+        onOpenChange={setIsFormDialogOpen}
+        pathInfo={pathInfo}
+      />
+    </>
   );
 }
