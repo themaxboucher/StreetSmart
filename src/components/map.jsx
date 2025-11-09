@@ -28,19 +28,11 @@ export function Map() {
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [showBikeLayers, setShowBikeLayers] = useState(false);
+  const [showBikeLayers, setShowBikeLayers] = useState(true);
   const [bikePaths, setBikePaths] = useState([]);
   const [isLoadingPaths, setIsLoadingPaths] = useState(false);
   const boundsTimeoutRef = useRef(null);
-  const [markers, setMarkers] = useState([
-    {
-      id: 1,
-      lat: 40.7128,
-      lng: -74.006,
-      title: "New York City",
-      description: "The Big Apple",
-    },
-  ]);
+  const [markers, setMarkers] = useState([]);
 
   const onLoad = useCallback((map) => {
     setMap(map);
@@ -74,14 +66,14 @@ export function Map() {
       clearTimeout(boundsTimeoutRef.current);
     }
 
-    // Wait 500ms after bounds change before making API call
+    // Wait 1s after bounds change before making API call
     boundsTimeoutRef.current = setTimeout(async () => {
       setIsLoadingPaths(true);
       const bounds = map.getBounds();
       const paths = await fetchBikePaths(bounds);
       setBikePaths(paths);
       setIsLoadingPaths(false);
-    }, 500);
+    }, 1000);
   }, [map, showBikeLayers]);
 
   // Cleanup timeout on unmount
@@ -92,17 +84,6 @@ export function Map() {
       }
     };
   }, []);
-
-  const handleMapClick = (e) => {
-    const newMarker = {
-      id: markers.length + 1,
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
-      title: `Marker ${markers.length + 1}`,
-      description: "Click to edit",
-    };
-    setMarkers([...markers, newMarker]);
-  };
 
   if (!isLoaded) {
     return (
@@ -134,9 +115,9 @@ export function Map() {
               Bike Paths: ON <LoaderCircle className="size-4 animate-spin" />
             </>
           ) : showBikeLayers ? (
-            `Bike Paths: ON (${bikePaths.length})`
+            `Bike Paths (${bikePaths.length})`
           ) : (
-            "Bike Paths: OFF"
+            "Bike Paths"
           )}
         </Button>
       </div>
@@ -147,7 +128,6 @@ export function Map() {
         zoom={12}
         onLoad={onLoad}
         onUnmount={onUnmount}
-        onClick={handleMapClick}
         onBoundsChanged={handleBoundsChanged}
         options={{
           mapTypeControl: false,
