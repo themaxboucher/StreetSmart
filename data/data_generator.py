@@ -1,8 +1,7 @@
 import pandas as pd
 import numpy as np
 
-ATTRIBUTES = ["Length",
-              "Scenery",
+ATTRIBUTES = ["Scenery",
               "Car Traffic",
               "Foot Traffic",
               "Safety",
@@ -11,8 +10,7 @@ ATTRIBUTES = ["Length",
               "Curvature",
               "Cleanliness"]
 
-RATINGS = {"Length":["Short", "Medium", "Long"],
-           "Scenery":["Drab", "Average", "Scenic"],
+RATINGS = {"Scenery":["Drab", "Average", "Scenic"],
            "Car Traffic":["Busy", "Average", "Empty"],
            "Foot Traffic":["Busy", "Average", "Empty"],
            "Safety":["Unsafe", "Moderate", "Safe"],
@@ -40,9 +38,9 @@ class RatingData:
                 else:
                     return RATINGS[col][2]
             else:
-                if index <= 80/3:
+                if index <= (len(ATTRIBUTES)/3):
                     return RATINGS[col][0]
-                elif index <= 80*2/3:
+                elif index <= (len(ATTRIBUTES)*2/3):
                     return RATINGS[col][1]
                 else:
                     return RATINGS[col][2]
