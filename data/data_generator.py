@@ -52,6 +52,7 @@ class RatingData:
             new_row[attr] = value
 
         self.data= pd.concat([self.data, pd.DataFrame([new_row])])
+        self.average_row()
 
     def add_row_list(self, row_list):
         for row in row_list:
