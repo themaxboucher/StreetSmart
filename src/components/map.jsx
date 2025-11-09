@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -40,6 +40,30 @@ export function Map({
   const [hoveredPolylineId, setHoveredPolylineId] = useState(null);
   const [selectedPolylineInfo, setSelectedPolylineInfo] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // Create custom MapPin icon for markers (only when API is loaded)
+  const mapPinIcon = useMemo(() => {
+    if (!isLoaded || !window.google?.maps) return null;
+
+    // SVG representation of Lucide MapPin icon in blue
+    const svgString = `
+      <svg width="32" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path 
+          d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" 
+          fill="#2b7fff" 
+          stroke="#ffffff" 
+          stroke-width="2"
+        />
+        <circle cx="12" cy="10" r="3" fill="#ffffff"/>
+      </svg>
+    `.trim();
+
+    return {
+      url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgString)}`,
+      scaledSize: new window.google.maps.Size(32, 40),
+      anchor: new window.google.maps.Point(16, 40), // Anchor at the bottom point of the pin
+    };
+  }, [isLoaded]);
 
   const onLoad = useCallback((map) => {
     setMap(map);
@@ -127,6 +151,7 @@ export function Map({
               position={{ lat: city.lat, lng: city.lng }}
               title={city.name}
               onClick={() => onSelectCity(city)}
+              icon={mapPinIcon}
             />
           ))}
 
