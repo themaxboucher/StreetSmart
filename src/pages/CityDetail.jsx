@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Map } from "@/components/map";
 import { CityStats } from "@/components/CityStats";
 import { cities } from "@/constants/cities";
+import { WeatherPanel } from "@/components/WeatherPanel";
 
 export function CityDetail() {
   const { cityName } = useParams();
@@ -68,6 +69,8 @@ export function CityDetail() {
           selectedBikePath={selectedBikePath}
         />
       </div>
+      {/* Weather panel overlay when on the city detail page */}
+      {selectedCity && <WeatherPanel city={selectedCity} />}
     </div>
   );
 }
