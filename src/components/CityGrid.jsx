@@ -59,7 +59,7 @@ export default function CityGrid({onCitySelected}) {
       {cities.map((city) => (
         <Card
           key={city.name}
-          className="group w-full cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
+          className="group relative w-full cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
           onClick={() => onCitySelected?.(city)}
         >
         {/* Background image */}
@@ -71,13 +71,11 @@ export default function CityGrid({onCitySelected}) {
         >
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-            <div
-  className="absolute bottom-0 left-0 p-3 text-white transform group-hover:-translate-y-35 transition-transform duration-300"
->
-  <h3 className="text-xl font-bold">{city.name}</h3>
-  <p className="text-sm text-gray-200">{city.country}</p>
-</div>
-
+            <div className="absolute bottom-0 left-0 p-3 text-white transform group-hover:-translate-y-35 
+                            transition-transform duration-300">
+                <h3 className="text-xl font-bold">{city.name}</h3>
+                <p className="text-sm text-gray-200">{city.country}</p>
+            </div>
         </div>
         {/* Sliding Panel */}
           <CardContent className="absolute bottom-0 left-0 
