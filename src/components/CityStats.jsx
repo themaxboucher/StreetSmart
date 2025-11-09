@@ -1,7 +1,22 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Bike, Bus, Footprints } from "lucide-react";
+import {
+  ChevronLeft,
+  Bike,
+  Bus,
+  Footprints,
+  Flower,
+  Car,
+  Network,
+  TrendingUp,
+  Star,
+  Angry,
+  Annoyed,
+  Smile,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bikePathsData from "@/components/data/bike-paths.js";
+import { BikePathRatingDialog } from "./BikePathRatingDialog";
 
 // Calculate distance in kilometers between coordinates using Haversine formula
 function calculateDistance(coordinates) {
@@ -28,8 +43,35 @@ function calculateDistance(coordinates) {
   return distanceKm;
 }
 
+// Get icon and color for rating
+function getRatingIcon(rating) {
+  switch (rating) {
+    case "good":
+      return {
+        icon: Smile,
+        color: "text-green-600",
+      };
+    case "ok":
+      return {
+        icon: Annoyed,
+        color: "text-yellow-600",
+      };
+    case "bad":
+      return {
+        icon: Angry,
+        color: "text-red-600",
+      };
+    default:
+      return {
+        icon: Smile,
+        color: "text-gray-400",
+      };
+  }
+}
+
 export function CityStats({ city, selectedBikePath, onClearBikePath }) {
   const navigate = useNavigate();
+  const [isRatingDialogOpen, setIsRatingDialogOpen] = useState(false);
 
   // Calculate bike paths statistics for Calgary
   const bikePathsStats = {
@@ -45,6 +87,40 @@ export function CityStats({ city, selectedBikePath, onClearBikePath }) {
   if (!city) {
     return null;
   }
+
+  // If a bike path is selected, show bike path stats instead of city stats
+  const bikePathStats = selectedBikePath
+    ? [
+        {
+          label: "Scenery",
+          value: selectedBikePath.scenery || "ok",
+          icon: Flower,
+          baseColor: "text-pink-500",
+          baseBgColor: "bg-pink-50",
+        },
+        {
+          label: "Nearby Traffic",
+          value: selectedBikePath.carTraffic || "ok",
+          icon: Car,
+          baseColor: "text-red-500",
+          baseBgColor: "bg-red-50",
+        },
+        {
+          label: "Connectivity",
+          value: selectedBikePath.connectivity || "ok",
+          icon: Network,
+          baseColor: "text-blue-500",
+          baseBgColor: "bg-blue-50",
+        },
+        {
+          label: "Incline",
+          value: selectedBikePath.incline || "ok",
+          icon: TrendingUp,
+          baseColor: "text-orange-500",
+          baseBgColor: "bg-orange-50",
+        },
+      ]
+    : null;
 
   const stats = [
     {
@@ -75,57 +151,49 @@ export function CityStats({ city, selectedBikePath, onClearBikePath }) {
       {/* Header with back button */}
       <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center gap-3">
         <Button
-          onClick={() => navigate("/")}
+          onClick={() => (selectedBikePath ? onClearBikePath() : navigate("/"))}
           variant="ghost"
           size="icon"
           className="hover:bg-gray-100"
         >
           <ChevronLeft size={20} />
         </Button>
-        <div>
-          <h2 className="font-semibold text-lg text-gray-900">{city.name}</h2>
-          <p className="text-xs text-gray-500">{city.country}</p>
+        <div className="flex-1">
+          <h2 className="font-semibold text-lg text-gray-900">
+            {selectedBikePath ? selectedBikePath.name : city.name}
+          </h2>
+          <p className="text-xs text-gray-500">
+            {selectedBikePath ? "Bike Path" : city.country}
+          </p>
         </div>
       </div>
 
-      {/* City image */}
-      <div className="relative h-48 overflow-hidden bg-gray-200">
-        <img
-          src={city.image}
-          alt={city.name}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.style.display = "none";
-          }}
-        />
-      </div>
-
       {/* Stats section */}
-      <div className="flex-1 p-6">
-        <div className="space-y-4">
-          {stats.map((stat) => {
+      <div className="flex-1 p-6 flex flex-col">
+        <div className={bikePathStats ? "space-y-1" : "space-y-3"}>
+          {(bikePathStats || stats).map((stat) => {
             const Icon = stat.icon;
             const isCycling = stat.label === "Cycling";
-            const isComingSoon = stat.label !== "Cycling";
+            const isComingSoon = stat.label !== "Cycling" && !bikePathStats;
             const hasData = stat.value !== null && stat.value !== undefined;
 
-            // Show nothing if no data available (for non-Calgary cities)
-            if (!hasData) {
+            // Show nothing if no data available (for non-Calgary cities) - only for city stats
+            if (!hasData && !bikePathStats) {
               return (
                 <div
                   key={stat.label}
-                  className={`${stat.bgColor} rounded-lg p-4`}
+                  className="bg-white border border-gray-200 rounded-xl p-5"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`p-2 rounded-lg ${stat.bgColor}`}>
                       <Icon size={20} className={stat.color} />
-                      <span className="font-medium text-gray-900">
-                        {stat.label}
-                      </span>
                     </div>
+                    <h3 className="font-semibold text-gray-900 text-sm">
+                      {stat.label}
+                    </h3>
                   </div>
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <span className="inline-block px-2.5 py-1 bg-gray-300 text-gray-700 text-xs font-medium rounded-full">
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <span className="inline-flex items-center px-3 py-1.5 bg-gray-100 text-gray-600 text-xs font-medium rounded-md">
                       Coming soon
                     </span>
                   </div>
@@ -133,25 +201,57 @@ export function CityStats({ city, selectedBikePath, onClearBikePath }) {
               );
             }
 
-            return (
-              <div
-                key={stat.label}
-                className={`${stat.bgColor} rounded-lg p-4`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <Icon size={20} className={stat.color} />
-                    <span className="font-medium text-gray-900">
+            // For bike path stats, use icon-based rating display
+            if (bikePathStats) {
+              const ratingIcon = getRatingIcon(stat.value);
+              const RatingIcon = ratingIcon.icon;
+              return (
+                <div
+                  key={stat.label}
+                  className="flex items-center justify-between py-3 px-1"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`p-1.5 rounded-lg ${stat.baseBgColor}`}>
+                      <Icon size={18} className={stat.baseColor} />
+                    </div>
+                    <span className="text-sm font-medium text-gray-900">
                       {stat.label}
                     </span>
                   </div>
-                  <span className={`text-2xl font-bold ${stat.color}`}>
-                    {stat.value}
-                  </span>
+                  <RatingIcon size={20} className={ratingIcon.color} />
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+              );
+            }
+
+            // For city stats, use modern card design
+            return (
+              <div
+                key={stat.label}
+                className="bg-white border border-gray-200 rounded-xl p-5 hover:border-gray-300 transition-colors shadow-sm"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                      <Icon size={20} className={stat.color} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 text-sm">
+                        {stat.label}
+                      </h3>
+                      <div className="flex items-baseline gap-1 mt-1">
+                        <span className={`text-3xl font-bold ${stat.color}`}>
+                          {stat.value}
+                        </span>
+                        <span className="text-sm text-gray-500 font-medium">
+                          /10
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full ${stat.color.replace(
+                    className={`h-full rounded-full transition-all ${stat.color.replace(
                       "text-",
                       "bg-"
                     )}`}
@@ -159,28 +259,30 @@ export function CityStats({ city, selectedBikePath, onClearBikePath }) {
                   />
                 </div>
 
-                {/* Additional info for Cycling */}
-                {isCycling && city.name === "Calgary" && (
-                  <div className="mt-3 pt-3 border-t border-blue-200 space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-700">Bike Paths:</span>
-                      <span className="font-semibold text-gray-900">
+                {/* Additional info for Cycling - only show when not viewing bike path */}
+                {isCycling && city.name === "Calgary" && !bikePathStats && (
+                  <div className="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Bike Paths</span>
+                      <span className="text-sm font-semibold text-gray-900">
                         {bikePathsStats.count}
                       </span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-700">Total Distance:</span>
-                      <span className="font-semibold text-gray-900">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">
+                        Total Distance
+                      </span>
+                      <span className="text-sm font-semibold text-gray-900">
                         {bikePathsStats.totalDistance} km
                       </span>
                     </div>
                   </div>
                 )}
 
-                {/* Coming soon badge for other stats */}
-                {isComingSoon && (
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <span className="inline-block px-2.5 py-1 bg-gray-300 text-gray-700 text-xs font-medium rounded-full">
+                {/* Coming soon badge for other stats - only for city stats */}
+                {isComingSoon && !bikePathStats && (
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <span className="inline-flex items-center px-3 py-1.5 bg-gray-100 text-gray-600 text-xs font-medium rounded-md">
                       Coming soon
                     </span>
                   </div>
@@ -189,7 +291,26 @@ export function CityStats({ city, selectedBikePath, onClearBikePath }) {
             );
           })}
         </div>
+        {selectedBikePath && (
+          <div className="mt-auto pt-6">
+            <Button
+              onClick={() => setIsRatingDialogOpen(true)}
+              className="w-full"
+              variant="default"
+            >
+              <Star size={16} />
+              Rate This Bike Path
+            </Button>
+          </div>
+        )}
       </div>
+
+      {/* Bike Path Rating Dialog */}
+      <BikePathRatingDialog
+        isOpen={isRatingDialogOpen}
+        onOpenChange={setIsRatingDialogOpen}
+        pathInfo={selectedBikePath}
+      />
     </div>
   );
 }
