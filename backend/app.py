@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os, requests
@@ -57,16 +57,16 @@ OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY")
 def send_cities():
     return jsonify(cities)
 
-@app.route("/api/weather/<city>")
-def get_weather_for_city(city):
-    # cityData = next((city for city in cities if city["name"].lower() == city.lower()), None)
-    # if not cityData:
-    #     return jsonify({"error": "City not found"}), 404
-    
+@app.route("/weather")
+def get_weather_for_city():
+    city = request.args.get("city")
+    if not city:
+        return jsonify({"error": "City name required"}), 400
+
     try:
         # Using OpenWeather's Geocoding API to get lat/lon off city name
         geo_url = (
-            f"http://api.openweathermap.org/geo/1.0/direct?q={city},124&limit=1&appid={OPENWEATHER_KEY}"
+            f"https://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={OPENWEATHER_KEY}"
         )
         geo_resp = requests.get(geo_url)
         geo_data = geo_resp.json()
@@ -79,19 +79,85 @@ def get_weather_for_city(city):
 
         # Using acquired geo data for the weather API call
         weather_url = (
-            f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHER_KEY}"
+            f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={OPENWEATHER_KEY}&units=metric"
         )
+
+        # Also get air pollution data
+        air_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={OPENWEATHER_KEY}"
+        air_resp = requests.get(air_url)
+        air_data = air_resp.json() if air_resp.ok else {}
+
         weather_resp = requests.get(weather_url)
         weather_data = weather_resp.json()
 
-        # Parse data
+        # Parse data with fallbacks for different OpenWeather response shapes
+        # Some endpoints (classic /weather) return top-level 'main' and 'weather'
+        # One Call returns a 'current' object with similar fields.
+        def safe_get(d, *keys, default=None):
+            cur = d
+            try:
+                for k in keys:
+                    cur = cur[k]
+                return cur
+            except Exception:
+                return default
+
+        # Temperature
+        temperature = safe_get(weather_data, "main", "temp")
+        if temperature is None:
+            temperature = safe_get(weather_data, "current", "temp")
+
+        # Format temperature to one decimal place if available
+        if temperature is not None:
+            try:
+                temperature = round(float(temperature), 1)
+            except Exception:
+                # leave original value if it can't be parsed
+                pass
+            
+        # Feels like
+        feelslike = safe_get(weather_data, "main", "feels_like")
+        if feelslike is None:
+            feelslike = safe_get(weather_data, "current", "feels_like")
+
+        # Description & icon
+        description = safe_get(weather_data, "weather", 0, "description")
+        icon = safe_get(weather_data, "weather", 0, "icon")
+        if description is None:
+            description = safe_get(weather_data, "current", "weather", 0, "description")
+            icon = safe_get(weather_data, "current", "weather", 0, "icon")
+
+        # Humidity
+        humidity = safe_get(weather_data, "main", "humidity")
+        if humidity is None:
+            humidity = safe_get(weather_data, "current", "humidity")
+
+        # Wind speed
+        wind_speed = safe_get(weather_data, "wind", "speed")
+        if wind_speed is None:
+            wind_speed = safe_get(weather_data, "current", "wind_speed")
+
+        # Air quality safe extraction
+        air_entry = safe_get(air_data, "list", 0, default={})
+        aq = safe_get(air_entry, "main", "aqi")
+        components = safe_get(air_entry, "components", default={})
+
         result = {
             "city": city,
-            "temperature": weather_data["main"]["temp"],
-            "description": weather_data["weather"][0]["description"].title(),
-            "icon": weather_data["weather"][0]["icon"],
-            "humidity": weather_data["main"]["humidity"],
-            "wind_speed": weather_data["wind"]["speed"],
+            "temperature": temperature,
+            "feels_like": feelslike,
+            "description": description.title() if isinstance(description, str) else None,
+            "icon": icon,
+            "humidity": humidity,
+            "wind_speed": wind_speed,
+            "air_quality": {
+                "aqi": aq,
+                "co": components.get("co"),
+                "no2": components.get("no2"),
+                "o3": components.get("o3"),
+                "pm2_5": components.get("pm2_5"),
+                "pm10": components.get("pm10"),
+            }
         }
 
         return jsonify(result)

@@ -10,7 +10,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-export default function CityGrid({onCitySelected}) {
+export default function CityGrid({onSelectCity}) {
     const [cities, setCities] = useState([]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function CityGrid({onCitySelected}) {
         <Card
           key={city.name}
           className="group relative w-full cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
-          onClick={() => onCitySelected?.(city)}
+          onClick={() => onSelectCity?.(city.name)}
         >
         {/* Background image */}
         <div
@@ -36,7 +36,7 @@ export default function CityGrid({onCitySelected}) {
             }}
         >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <CardTitle className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 p-3 text-white transform group-hover:-translate-y-35 
                             transition-transform duration-300">
                 <h3 className="text-xl font-bold">{city.name}</h3>
@@ -62,7 +62,7 @@ export default function CityGrid({onCitySelected}) {
               <span>{city.transport}</span>
             </div>
             </div>
-            <Button variant="secondary" className="w-full mt-2">
+            <Button variant="secondary" className="w-full mt-2" onClick={() => onSelectCity?.(city.name)}>
               View Map
             </Button>
           </CardContent>
