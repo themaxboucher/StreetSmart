@@ -1,7 +1,7 @@
 # StreetSmart
 ## Innovation & Creativity
 
-- **The Idea:** We created **StreetSmart** to ****highlight flaws in urban planning, drive social change and empower people without cars (or even with cars) to take a healthier and cleaner approach to transportation. Rankings within cities can help bring to light data on the state of transportation and potentially encourage the creation of solutions to any problems that show up.
+- **The Idea:** We created **StreetSmart** to highlight flaws in urban planning, drive social change and empower people without cars (or even with cars) to take a healthier and cleaner approach to transportation. Rankings within cities can help bring to light data on the state of transportation and potentially encourage the creation of solutions to any problems that show up.
 - **Experience Ranking:** Our core idea is bringing users data and recommendations based on other users’ experiences through ratings of various transport routes (Safety, Comfort, Scenery).
 - **Weather Conditions:** We integrated a Weather API to provide real-time weather information that assists users in making informed, choices about their method of transportation.
 - **Other transportation features:** The experience-rating concept is set to expand to other modes, including walking and public transportation.
